@@ -1,4 +1,4 @@
-name: hola-mundo #Nombre del workflow
+name: triggers #Nombre del workflow
 on: #evento(s) que lo activará
   push: #cada que se realize un push a alguna de las sig, ramas
     branches:
