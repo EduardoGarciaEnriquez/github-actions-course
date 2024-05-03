@@ -1,0 +1,19 @@
+name: contextos
+run-name: learnign about contexts
+on: push
+jobs: 
+  check-main:
+      if: ${{ github.ref == 'refs/heads/main' }}
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "Desplegando en la rama $GITHUB_REF"
+  check-job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: echo env
+          run: echo "${{ job.status }}"
+  check-secrets:
+      runs-on: ubuntu-latest
+      steps:
+        - name: echo env
+          run: echo "${{secrets.GITHUB_TOKEN }}"

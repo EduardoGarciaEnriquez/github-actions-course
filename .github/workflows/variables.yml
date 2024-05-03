@@ -1,0 +1,10 @@
+name: variables
+run-name: learning about variables
+on:
+  workflow_dispatch
+jobs:
+  salute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Salute
+        run: echo "Hello, ${{ vars.NAME }}"

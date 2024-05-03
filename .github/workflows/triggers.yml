@@ -1,0 +1,23 @@
+name: triggers #Nombre del workflow
+on: #evento(s) que lo activará
+  push: #cada que se realize un push a alguna de las sig, ramas
+    branches:
+    - main
+    - dev
+  schedule: #cada día a las 22:30hrs
+    - cron:  '30 22 * * *' # minuto(0-59) hora(0-23) díadelmes(0-31) mes(0-12 o JAN-DEC) díaDeLaSemana (0-6 o MON-SUN) 
+  issues: #cad que se reporte un issue con los labels opened o closed
+    types: [opened, closed]
+jobs: #Definición de los jobs
+  hola-mundo: #Nombre del job
+    runs-on: ubuntu-latest #Maquina en la que correrá
+    steps: #Lista de steps del job hola-mundo
+      - name: Checkout # checkout branch
+        uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3 #config node
+        with:
+          node-version: 16
+
+      - name: Run hola-mundo #run script
+        run: node hola-mundo.js
