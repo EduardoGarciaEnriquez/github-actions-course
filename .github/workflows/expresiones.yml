@@ -17,28 +17,23 @@ on:
         required: true
         type: number
 jobs:
-  get-bmp:
+  under-weighted:
+    if: ${{ inputs.weight }} % (${{ inputs.height }} * ${{ inputs.height }}) < 18.5
     runs-on: ubuntu-latest
     steps:
-      - name: bmp
-        run: echo bmp = ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }})%
-  # under-weighted:
-  #   if: ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) < 18.5
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Correr script
-  #       run: echo ${{ inputs.name }} you are under weighted, go get a sandwich
-  # healthy:
-  #   if: ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) >= 18.5 && ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) <= 24.9 
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Correr script
-  #       run: echo ${{ inputs.name }} you are in a healthy BMP
-  # over-weighted:
-  #   if: ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) > 25
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Correr script
-  #       run: echo ${{ inputs.name }} you are over weighted, down and give me 20
+      - name: Correr script
+        run: echo ${{ inputs.name }} you are under weighted, go get a sandwich
+  healthy:
+    if: ${{ inputs.weight }} % (${{ inputs.height }} * ${{ inputs.height }}) >= 18.5 && ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) <= 24.9 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.name }} you are in a healthy BMP
+  over-weighted:
+    if: ${{ inputs.weight }} % (${{ inputs.height }} * ${{ inputs.height }}) > 25
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.name }} you are over weighted, down and give me 20
 
   
