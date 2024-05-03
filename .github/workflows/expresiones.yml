@@ -1,0 +1,39 @@
+name: expressions #Nombre del workflow
+run-name: learning expressions
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name'
+        required: true
+        default: 'Juan'
+        type: string
+      weight:
+        description: 'Weight in Kg'
+        required: true
+        type: number
+      height:
+        description: 'Height in metros'
+        required: true
+        type: number
+jobs:
+  under-weighted:
+    if: ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) < 18.5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.name }} you are under weighted, go get a sandwich
+  healthy:
+    if: ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) >= 18.5 && ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) <= 24.9 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.name }} you are in a healthy BMP
+  over-weighted:
+    if: ${{ inputs.weight }} / (${{ inputs.height }} * ${{ inputs.height }}) > 25
+    runs-on: ubuntu-latest
+    steps:
+      - name: Correr script
+        run: echo ${{ inputs.name }} you are over weighted, down and give me 20
+
+  
