@@ -15,7 +15,7 @@ jobs: #Definición de los jobs
       - name: Checkout # checkout branch
         uses: actions/checkout@v3
       
-      - uses: actions/setup-node@v3 #config node
+      - uses: actions/setup-node@v4 #config node
         with:
           node-version: 16
 
